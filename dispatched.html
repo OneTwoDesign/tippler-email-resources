@@ -48,27 +48,12 @@
 			   <tr style="border-top: 1px solid #ccc">
 			    <th></th>
 			   	<th style="font-weight:bold;text-align:left">Product</th>
-			   	<th style="font-weight:bold;text-align:left">Unit Price</th>
 			   	<th style="font-weight:bold;text-align:left">Quantity</th>
 			   	<th style="font-weight:bold;text-align:left">Total</th>
 			   </tr>	
 			</thead>
 	
 			<tfoot>
-				<tr style="border-top: 1px solid #ccc">	
-					<td colspan="3">&nbsp;</td>
-					<td><strong>Sub-total:</strong></td>
-					<td>{{ subtotal }}</td>
-			   	</tr>	
-			   	{% if shipping %}
-				<tr>  	
-				 	<td colspan="3">&nbsp;</td>  	
-				   	<td><strong>Postage:</strong></td>
-				   	<td>
-				   		{{ shipping_price }}
-				   	</td>
-				</tr>
-				{% endif %}
 				<tr>
 					<td colspan="3">&nbsp;</td>
 					<td><strong>Total:</strong></td>
@@ -86,8 +71,8 @@
 					{% endif %}
 					</td>
 					<td>{{ item.title }}<br /> Item No: {{ item.sku }}</td>
-					<td align="center">{{ item.price.value }}</td>
 					<td align="center">{{ item.quantity }}</td>
+					<td align="center">{{ item.totals.value }}</td>
 			 	</tr>
 			{% endfor %}	
 			</tbody>
