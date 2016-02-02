@@ -3,7 +3,7 @@
 <tbody>
 	<tr>
 	   <td>	
-	      <p><img width=160 height=160 style="width:160px;height:160px;" src="https://freeman-industries.github.io/tippler-email-resources/man.jpg" alt="Tippler"/></p>
+	      <p><img width=90 height=90 style="width:90px;height:90px;" src="https://freeman-industries.github.io/tippler-email-resources/man.jpg" alt="Tippler"/></p>
 	   </td>
 	   <td style="text-align: right;">	
 	   <p><strong>Order reference: #{{ id }}</strong></p>
@@ -26,8 +26,9 @@
 	   </td>
 	</tr>
 	<tr>
+	   {% if shipping %}
 	   <td>	
-	      <p><strong>We sent it to:</strong></p>
+	      <p><strong>Shipping Information</strong></p>
 	      <p>
 	      {% if ship_to.data.first_name %}{{ ship_to.data.first_name }}<br />{% elseif ship_to.data.last_name %}{{ ship_to.data.last_name }}<br />{% endif %}
 	      {% if ship_to.data.company %}{{ ship_to.data.company }}<br />{% endif %}
@@ -36,6 +37,7 @@
 	      {% if ship_to.data.city %}{{ ship_to.data.city }}<br />{% endif %}
 	      </p>
 	   </td>
+	   {% endif %}
 	</tr>
 	<tr>
 		<td colspan="2">
@@ -84,9 +86,8 @@
 					{% endif %}
 					</td>
 					<td>{{ item.title }}<br /> Item No: {{ item.sku }}</td>
-					<td align="center">{{ item.price }}</td>
+					<td align="center">{{ item.price.value }}</td>
 					<td align="center">{{ item.quantity }}</td>
-					<td align="center">{{ item.pricing.formatted.without_tax }}</td>
 			 	</tr>
 			{% endfor %}	
 			</tbody>
@@ -97,7 +98,7 @@
 	   <td colspan="2">
 	      <br />
 	      <br />	
-	      <p>Once again, thank you for your custom, and we hope to see you back soon!</p>
+	      <p>Thanks for your custom, and we hope to see you back soon!</p>
 	   </td>
 	</tr>
 </tbody>
