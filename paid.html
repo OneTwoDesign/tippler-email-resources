@@ -3,7 +3,7 @@
 <tbody>
 	<tr>
 	   <td>	
-	      <p><img src="https://molt.in/addons/shared_addons/themes/moltin/img/logo.png" alt="Moltin"/></p>
+	      <p><img width=160 height=160 style="width:160px;height:160px;" src="https://freeman-industries.github.io/tippler-email-resources/man.jpg" alt="Tippler"/></p>
 	   </td>
 	   <td style="text-align: right;">	
 	   <p><strong>Order ID: #{{ id }}</strong></p>
@@ -14,11 +14,11 @@
 	   <td colspan="2">
 	  	 <br />
 	  	  {% if customer.data.first_name %}
-	  	    <p>Dear {{ customer.data.first_name }},</p>
+	  	    <p>Hi {{ customer.data.first_name }},</p>
 	      {% elseif bill_to.first_name %}
-	      	<p>Dear {{ bill_to.first_name }},</p>
+	      	<p>Hi {{ bill_to.first_name }},</p>
 	      {% elseif ship_to.first_name %}
-	      	<p>Dear {{ ship_to.first_name }},</p>
+	      	<p>Hi {{ ship_to.first_name }},</p>
 	      {% endif %}
 	      	
 	      <p>Thank you for your recent order, below you will find the receipt of your order and these should be kept for your own records.</p>
@@ -35,23 +35,9 @@
 	      {% if ship_to.data.address_1 %}{{ ship_to.data.address_1 }}<br />{% endif %}
 	      {% if ship_to.data.address_2 %}{{ ship_to.data.address_2 }}<br />{% endif %}
 	      {% if ship_to.data.city %}{{ ship_to.data.city }}<br />{% endif %}
-	      {% if ship_to.data.county %}{{ ship_to.data.county }}<br />{% endif %}
-	      {% if ship_to.data.postcode %}{{ ship_to.data.postcode }}<br />{% endif %}
-	      {% if ship_to.data.country %}{{ ship_to.data.country.name }}{% endif %}
 	      </p>
 	   </td>
 	   {% endif %}
-	   <td>
-	      <p><strong>Billing Information:</strong></p>
-	      {% if bill_to.data.first_name %}{{ bill_to.data.first_name }}<br />{% elseif bill_to.data.last_name %}{{ bill_to.data.last_name }}<br />{% endif %}
-	      {% if bill_to.data.company %}{{ bill_to.data.company }}<br />{% endif %}
-	      {% if bill_to.data.address_1 %}{{ bill_to.data.address_1 }}<br />{% endif %}
-	      {% if bill_to.data.address_2 %}{{ bill_to.data.address_2 }}<br />{% endif %}
-	      {% if bill_to.data.city %}{{ bill_to.data.city }}<br />{% endif %}
-	      {% if bill_to.data.county %}{{ bill_to.data.county }}<br />{% endif %}
-	      {% if bill_to.data.postcode %}{{ bill_to.data.postcode }}<br />{% endif %}
-	      {% if bill_to.data.country %}{{ bill_to.data.country.name }}{% endif %}
-	   </td>
 	</tr>
 	<tr>
 		<td colspan="2">
@@ -91,12 +77,17 @@
 			</tfoot>
 	
 			<tbody>
+				<tr>
+					<pre>
+						{{ dump(items) }}
+					</pre>
+				</tr>
 			{% for item in items %}
 				<tr style="border-top: 1px solid #ccc"> 
 					<td>
 					{% if item.product.data.images is empty %}
 					{% else %}
-					<img src="http://{{ item.product.data.images.0.segments.domain }}w60/h60/fit/{{ item.product.data.images.0.segments.suffix }}" alt="{{ item.title }}" />
+					<img src="http://{{ item.product.data.images.0.segments.domain }}w60/h212/fit/{{ item.product.data.images.0.segments.suffix }}" alt="{{ item.title }}" />
 					{% endif %}
 					</td>
 					<td>{{ item.title }}<br /> Item No: {{ item.sku }}</td>
