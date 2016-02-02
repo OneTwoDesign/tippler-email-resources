@@ -34,9 +34,6 @@
 	      {% if ship_to.data.address_1 %}{{ ship_to.data.address_1 }}<br />{% endif %}
 	      {% if ship_to.data.address_2 %}{{ ship_to.data.address_2 }}<br />{% endif %}
 	      {% if ship_to.data.city %}{{ ship_to.data.city }}<br />{% endif %}
-	      {% if ship_to.data.county %}{{ ship_to.data.county }}<br />{% endif %}
-	      {% if ship_to.data.postcode %}{{ ship_to.data.postcode }}<br />{% endif %}
-	      {% if ship_to.data.country %}{{ ship_to.data.country.name }}{% endif %}
 	      </p>
 	   </td>
 	</tr>
@@ -78,21 +75,18 @@
 			</tfoot>
 	
 			<tbody>
-			<tr>
-				{{ dump(items) }}
-			</tr>
-			{% for item in items %}
+			{% for item in items.data %}
 				<tr style="border-top: 1px solid #ccc"> 
 					<td>
 					{% if item.product.data.images is empty %}
 					{% else %}
-					<img src="http://{{ item.product.data.images.0.segments.domain }}w60/h60/fit/{{ item.product.data.images.0.segments.suffix }}" alt="{{ item.title }}" />
+					<img src="http://{{ item.product.data.images.0.segments.domain }}w60/h212/fit/{{ item.product.data.images.0.segments.suffix }}" alt="{{ item.title }}" />
 					{% endif %}
 					</td>
 					<td>{{ item.title }}<br /> Item No: {{ item.sku }}</td>
 					<td align="center">{{ item.price }}</td>
 					<td align="center">{{ item.quantity }}</td>
-					<td align="center"><!--{{ item.total }}--></td>
+					<td align="center">{{ item.pricing.formatted.without_tax }}</td>
 			 	</tr>
 			{% endfor %}	
 			</tbody>
