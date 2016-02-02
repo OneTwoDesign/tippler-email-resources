@@ -3,7 +3,7 @@
 <tbody>
 	<tr>
 	   <td>	
-	      <p><img width=160 height=160 style="width:160px;height:160px;" src="https://freeman-industries.github.io/tippler-email-resources/man.jpg" alt="Tippler"/></p>
+	      <p><img width=90 height=90 style="width:90px;height:90px;" src="https://freeman-industries.github.io/tippler-email-resources/man.jpg" alt="Tippler"/></p>
 	   </td>
 	   <td style="text-align: right;">	
 	   <p><strong>Order ID: #{{ id }}</strong></p>
@@ -21,7 +21,7 @@
 	      	<p>Hi {{ ship_to.first_name }},</p>
 	      {% endif %}
 	      	
-	      <p>Thank you for your recent order, below you will find the receipt of your order and these should be kept for your own records.</p>
+	      <p>Thank you for your recent order! Here's your receipt:</p>
 	      <br />
 	   </td>
 	</tr>
@@ -55,33 +55,14 @@
 			</thead>
 	
 			<tfoot>
-				<tr style="border-top: 1px solid #ccc">	
-					<td colspan="3">&nbsp;</td>
-					<td><strong>Sub-total:</strong></td>
-					<td align="right">{{ pricing.formatted.subtotal }}</td>
-			   	</tr>	
-			   	{% if shipping %}
-				<tr>  	
-				 	<td colspan="3">&nbsp;</td>  	
-				   	<td><strong>Postage:</strong></td>
-				   	<td align="right">
-				   		{{ pricing.formatted.shipping_price }}
-				   	</td>
-				</tr>
-				{% endif %}
 				<tr>
 					<td colspan="3">&nbsp;</td>
 					<td><strong>Total:</strong></td>
-					<td align="right">{{ pricing.formatted.total }}</td>
+					<td align="right">{{ total.value }}</td>
 				</tr>
 			</tfoot>
 	
 			<tbody>
-				<tr>
-					<pre>
-						{{ dump(items) }}
-					</pre>
-				</tr>
 			{% for item in items %}
 				<tr style="border-top: 1px solid #ccc"> 
 					<td>
@@ -91,9 +72,8 @@
 					{% endif %}
 					</td>
 					<td>{{ item.title }}<br /> Item No: {{ item.sku }}</td>
-					<td align="center">{{ item.price }}</td>
+					<td align="center">{{ item.price.value }}</td>
 					<td align="center">{{ item.quantity }}</td>
-					<td align="center">{{ item.pricing.formatted.without_tax }}</td>
 			 	</tr>
 			{% endfor %}	
 			</tbody>
@@ -102,10 +82,10 @@
 	</tr>	
 	<tr>
 	   <td colspan="2">
-	   		<p>Please note this is just a confirmation of your order, once payment has been processed and your items have been dispatched we will contact you again to let you know.</p>
+	   		<p>Please note that this is just a confirmation of your order - once your items have been dispatched, we'll contact you again with more information.</p>
 	      	<br />
 	      	<br />	
-	      	<p>Once again, thank you for your custom, and we hope to see you back soon!</p>
+	      	<p>Thanks for your custom, and we hope to see you back soon!</p>
 	   </td>
 	</tr>
 </tbody>
