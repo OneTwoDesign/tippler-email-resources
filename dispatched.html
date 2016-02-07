@@ -36,6 +36,11 @@
 	      {% if ship_to.data.address_2 %}{{ ship_to.data.address_2 }}<br />{% endif %}
 	      {% if ship_to.data.city %}{{ ship_to.data.city }}<br />{% endif %}
 	      </p>
+	      <p>
+		<strong>Shipping Price:</strong>
+		<br />
+		{{ shipping.data.price.value }} ({{ shipping.value }})
+	      </p>
 	   </td>
 	   {% endif %}
 	</tr>
@@ -87,7 +92,12 @@
 	      <br />
 	      <br />
 	      <br />
-	      Thanks for your custom, and we hope to see you back soon!
+	      {% if ordertype == 'CASH' %}
+			You are paying cash, so please have the above amounts ready for us when we deliver your order.
+			<br />
+			<br />
+		{% endif %}
+	      Thanks for your custom, and see you very soon!
 	   </td>
 	</tr>
 </tbody>
