@@ -81,7 +81,10 @@
 			<br />
 			{{ totals.formatted.total }}
 			<br />
-			{{ dump(shipping) }}
+			<br />
+			<strong>Shipping:</strong>
+			<br />
+			{{ shipping.data.price.value }} ({{ shipping.value }})
 		</td>
 	</tr>
 	<tr>
@@ -94,7 +97,9 @@
 			<br />
 			<br />
 		{% endif %}
-	   	Please note that this is just a confirmation of your order - once your items have been dispatched, we'll contact you again with more information.
+	   	Please note that this is just a confirmation of your order - we will be contacting you soon to arrange your delivery.
+	   	<br />
+	   	Once your items have been dispatched, we'll email you again with more information.
 	      	<br />
 	      	<br />	
 	      	Thanks for your custom, and we hope to see you back soon!
