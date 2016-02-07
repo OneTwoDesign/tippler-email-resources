@@ -80,6 +80,8 @@
 			<strong>Total:</strong>
 			<br />
 			{{ totals.formatted.total }}
+			<br />
+			{{ dump(shipping) }}
 		</td>
 	</tr>
 	<tr>
@@ -87,6 +89,11 @@
 	   	<br />
 		<br />
 		<br />
+		{% if ordertype == 'CASH' %}
+			You are paying cash, so please have the above amounts ready for us when we deliver your order.
+			<br />
+			<br />
+		{% endif %}
 	   	Please note that this is just a confirmation of your order - once your items have been dispatched, we'll contact you again with more information.
 	      	<br />
 	      	<br />	
