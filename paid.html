@@ -36,6 +36,11 @@
 	      {% if ship_to.data.address_2 %}{{ ship_to.data.address_2 }}<br />{% endif %}
 	      {% if ship_to.data.city %}{{ ship_to.data.city }}<br />{% endif %}
 	      </p>
+	      <p>
+		<strong>Shipping price:</strong>
+		<br />
+		{{ shipping.data.price.value }} ({{ shipping.value }})
+	      </p>
 	   </td>
 	   {% endif %}
 	</tr>
@@ -79,13 +84,7 @@
 			<br />
 			<strong>Total:</strong>
 			<br />
-			{{ totals }}
 			{{ totals.formatted.total }}
-			<br />
-			<br />
-			<strong>Shipping:</strong>
-			<br />
-			{{ shipping.data.price.value }} ({{ shipping.value }})
 		</td>
 	</tr>
 	<tr>
