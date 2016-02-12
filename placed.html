@@ -23,21 +23,26 @@
 			<p><strong>Shipping Information</strong></p>
 			<p>
 				{% if ship_to.data.first_name %}{{ ship_to.data.first_name }}{% endif %}{% if ship_to.data.last_name %} {{ ship_to.data.last_name }}{% endif %}<br />
-	      {% if ship_to.data.company %}{{ ship_to.data.company }}<br />{% endif %}
-	      {% if ship_to.data.address_1 %}{{ ship_to.data.address_1 }}<br />{% endif %}
-	      {% if ship_to.data.address_2 %}{{ ship_to.data.address_2 }}<br />{% endif %}
-	      {% if ship_to.data.city %}{{ ship_to.data.city }}<br />{% endif %}
+	      			{% if ship_to.data.company %}{{ ship_to.data.company }}<br />{% endif %}
+	      			{% if ship_to.data.address_1 %}{{ ship_to.data.address_1 }}<br />{% endif %}
+	      			{% if ship_to.data.address_2 %}{{ ship_to.data.address_2 }}<br />{% endif %}
+	      			{% if ship_to.data.city %}{{ ship_to.data.city }}<br />{% endif %}
 			</p>
 			<p>
-  		  <strong>Shipping Price:</strong>
-  		  <br />
-  		  {{ shipping.data.price.value }} ({{ shipping.value }})
-      </p>
-      <p>
-      	<strong>Estimated delivery time:</strong>
-      	<br />
-      	{{ shipping.data.eta }}
-      </p>
+				<strong>Customer phone number:</strong>
+				<br />
+				{{ customer.data.phone }}
+			</p>
+			<p>
+		  		<strong>Shipping Price:</strong>
+		  		<br />
+		  		{{ shipping.data.price.value }} ({{ shipping.value }})
+			</p>
+		      	<p>
+		      		<strong>Estimated delivery time:</strong>
+		      		<br />
+		      		{{ shipping.data.eta }}
+		      	</p>
 		</td>
 		{% endif %}
 	</tr>
