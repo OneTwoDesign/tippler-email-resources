@@ -33,6 +33,13 @@
 				<br />
 				{{ ship_to.data.phone }}
 			</p>
+			{% if ship_to.data.instructions %}
+				<p>
+					<strong>Special instructions:</strong>
+					<br />
+					{{ ship_to.data.instructions }}	
+				</p>
+			{% endif %}
 			<p>
 		  		<strong>Shipping Price:</strong>
 		  		<br />
