@@ -2,52 +2,64 @@
 <table border="0" cellpadding="2" cellspacing="0" style="width: 100%;font-family:'Avenir Next','Avenir','Proxima Nova','Helvetica Neue','Helvetica',sans-serif">	
 <tbody>
 	<tr>
-	   <td>	
-	      <p><img width=90 height=90 style="width:90px;height:90px;" src="https://freeman-industries.github.io/tippler-email-resources/man.jpg" alt="Tippler"/></p>
-	   </td>
-	   <td style="text-align: right;">	
-	   <p><strong>Order reference: #{{ id }}</strong></p>
-	   </td>
+		<td>	
+			<p><img width=90 height=90 style="width:90px;height:90px;" src="https://freeman-industries.github.io/tippler-email-resources/man.jpg" alt="Tippler"/></p>
+		</td>
+		<td style="text-align: right;">	
+			<p><strong>Order reference: #{{ id }}</strong></p>
+		</td>
 	</tr>
-		
+	
 	<tr>
-	   <td colspan="2">
-	  	 <br />
-	  	  {% if customer.data.first_name %}
-	  	    <p>Hi {{ customer.data.first_name }},</p>
-	      {% elseif bill_to.first_name %}
-	      	<p>Hi {{ bill_to.first_name }},</p>
-	      {% elseif ship_to.first_name %}
-	      	<p>Hi {{ ship_to.first_name }},</p>
-	      {% endif %}
-	      	
-	      <p>Thank you for your recent order! Here's your receipt:</p>
-	      <br />
-	   </td>
+		<td colspan="2">
+			<br />
+			{% if customer.data.first_name %}
+				<p>Hi {{ customer.data.first_name }},</p>
+			{% elseif bill_to.first_name %}
+				<p>Hi {{ bill_to.first_name }},</p>
+			{% elseif ship_to.first_name %}
+				<p>Hi {{ ship_to.first_name }},</p>
+			{% endif %}
+			
+			<p>Thank you for your recent order! Here's your receipt:</p>
+			<br />
+		</td>
 	</tr>
 	<tr>
-	   {% if shipping %}
-	   <td>	
-	      <p><strong>Shipping Information:</strong></p>
-	      <p>
-	      {% if ship_to.data.first_name %}{{ ship_to.data.first_name }}{% endif %}{% if ship_to.data.last_name %} {{ ship_to.data.last_name }}{% endif %}<br />
-	      {% if ship_to.data.company %}{{ ship_to.data.company }}<br />{% endif %}
-	      {% if ship_to.data.address_1 %}{{ ship_to.data.address_1 }}<br />{% endif %}
-	      {% if ship_to.data.address_2 %}{{ ship_to.data.address_2 }}<br />{% endif %}
-	      {% if ship_to.data.city %}{{ ship_to.data.city }}<br />{% endif %}
-	      </p>
-	      <p>
-		<strong>Shipping Price:</strong>
-		<br />
-		{{ shipping.data.price.value }} ({{ shipping.value }})
-	      </p>
-	      <p>
-	      	<strong>Estimated delivery time:</strong>
-	      	<br />
-	      	{{ shipping.data.eta }}
-	      </p>
-	   </td>
-	   {% endif %}
+		{% if shipping %}
+			<td>	
+				<p><strong>Shipping Information:</strong></p>
+				<p>
+					{% if ship_to.data.first_name %}{{ ship_to.data.first_name }}{% endif %}{% if ship_to.data.last_name %} {{ ship_to.data.last_name }}{% endif %}<br />
+					{% if ship_to.data.company %}{{ ship_to.data.company }}<br />{% endif %}
+					{% if ship_to.data.address_1 %}{{ ship_to.data.address_1 }}<br />{% endif %}
+					{% if ship_to.data.address_2 %}{{ ship_to.data.address_2 }}<br />{% endif %}
+					{% if ship_to.data.city %}{{ ship_to.data.city }}<br />{% endif %}
+				</p>
+				<p>
+					<strong>Your phone number:</strong>
+					<br />
+					{{ ship_to.data.phone }}
+				</p>
+				{% if ship_to.data.instructions %}
+					<p>
+						<strong>Special instructions:</strong>
+						<br />
+						{{ ship_to.data.instructions }}	
+					</p>
+				{% endif %}
+				<p>
+					<strong>Shipping Price:</strong>
+					<br />
+					{{ shipping.data.price.value }} ({{ shipping.value }})
+				</p>
+				<p>
+					<strong>Estimated delivery time:</strong>
+					<br />
+					{{ shipping.data.eta }}
+				</p>
+			</td>
+		{% endif %}
 	</tr>
 	<tr>
 		<td colspan="2">
