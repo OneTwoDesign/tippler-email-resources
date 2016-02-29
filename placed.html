@@ -27,7 +27,7 @@
 			<p>
 				<strong>Order time:</strong>
 				<br />
-				{{ created_at }} GMT (add 8 hours for Shanghai)
+				{{ created_at|date("m/d/Y H:i", "Asia/Shanghai") }} (Shanghai time)
 			</p>
 			<br />
 		</td>
