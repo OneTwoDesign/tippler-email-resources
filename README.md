@@ -1,5 +1,7 @@
-# tippler-email-resources
-Email resources for tippler.com.cn
+# Tippler Email Resources
+Email templates that get sent out when someone buys wine on Tippler.
+
+# 🔑 Use Tippler here: http://tippler.com.cn
 
 Tippler is an on-demand wine 🍷 delivery service based in Shanghai 🇨🇳, and it's one of the first full apps we ever built.
 
