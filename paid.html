@@ -1,137 +1,240 @@
-<!-- Order Paid -->
-<table border="0" cellpadding="2" cellspacing="0" style="width: 100%;font-family:'Avenir Next','Avenir','Proxima Nova','Helvetica Neue','Helvetica',sans-serif">	
-<tbody>
-	<tr>
-		<td>	
-			<p><img width=90 height=90 style="width:90px;height:90px;" src="https://freeman-industries.github.io/tippler-email-resources/man.jpg" alt="Tippler"/></p>
-		</td>
-		<td style="text-align: right;">	
-			<p><strong>Order reference: #{{ id }}</strong></p>
-		</td>
-	</tr>
-	
-	<tr>
-		<td colspan="2">
-			<br />
-			{% if customer.data.first_name %}
-				<p>Hi {{ customer.data.first_name }},</p>
-			{% elseif bill_to.first_name %}
-				<p>Hi {{ bill_to.first_name }},</p>
-			{% elseif ship_to.first_name %}
-				<p>Hi {{ ship_to.first_name }},</p>
-			{% endif %}
-			
-			<p>Thank you for your recent order! Here's your receipt:</p>
-			<br />
-		</td>
-	</tr>
-	<tr>
-		{% if shipping %}
-			<td>	
-				<p><strong>Shipping Information:</strong></p>
-				<p>
-					{% if ship_to.data.first_name %}{{ ship_to.data.first_name }}{% endif %}{% if ship_to.data.last_name %} {{ ship_to.data.last_name }}{% endif %}<br />
-					{% if ship_to.data.company %}{{ ship_to.data.company }}<br />{% endif %}
-					{% if ship_to.data.address_1 %}{{ ship_to.data.address_1 }}<br />{% endif %}
-					{% if ship_to.data.address_2 %}{{ ship_to.data.address_2 }}<br />{% endif %}
-					{% if ship_to.data.city %}{{ ship_to.data.city }}<br />{% endif %}
-				</p>
-				<p>
-					<strong>Your phone number:</strong>
-					<br />
-					{{ ship_to.data.phone }}
-				</p>
-				{% if ship_to.data.instructions %}
-					<p>
-						<strong>Special instructions:</strong>
-						<br />
-						{{ ship_to.data.instructions }}	
-					</p>
-				{% endif %}
-				<p>
-					<strong>Shipping Price:</strong>
-					<br />
-					{{ shipping.data.price.value }} ({{ shipping.value }})
-				</p>
-				<p>
-					<strong>Estimated delivery time:</strong>
-					<br />
-					{{ shipping.data.eta }}
-				</p>
-			</td>
-		{% endif %}
-	</tr>
-	<tr>
-		<td colspan="2">
-			<br />
-			<br />
-			<br />
-			<table border="0" cellpadding="2" cellspacing="0" style="width: 100%">	
-				<thead>
-				   <tr style="border-top: 1px solid #ccc">
-				   	<th style="font-weight:bold;text-align:left">Product</th>
-			   		<th></th>
-				   	<th style="font-weight:bold;text-align:left">Quantity</th>
-				   	<th style="font-weight:bold;text-align:left">Total</th>
-				   </tr>	
-				</thead>
-		
-				<tbody>
-				{% for item in items %}
-					<tr style="border-top: 1px solid #ccc"> 
-						<td>
-						{% if item.product.data.images is empty %}
-						{% else %}
-						<img src="http://{{ item.product.data.images.0.segments.domain }}w60/h228/fit/{{ item.product.data.images.0.segments.suffix }}" alt="{{ item.title }}" />
+<h2 id="english">In English: <small><a href="#chinese"> Go to Chinese</a></small></h2>
+		<!-- Order Paid -->
+		<table border="0" cellpadding="2" cellspacing="0" style="width: 100%;font-family:'Avenir Next','Avenir','Proxima Nova','Helvetica Neue','Helvetica',sans-serif">
+			<tbody>
+				<tr>
+					<td>
+						<p><img width=90 height=90 style="width:90px;height:90px;" src="https://freeman-industries.github.io/tippler-email-resources/man.jpg" alt="Tippler" /></p>
+					</td>
+					<td style="text-align: right;">
+						<p><strong>Order reference: #{{ id }}</strong></p>
+					</td>
+				</tr>
+
+				<tr>
+					<td colspan="2">
+						<br /> {% if customer.data.first_name %}
+						<p>Hi {{ customer.data.first_name }},</p>
+						{% elseif bill_to.first_name %}
+						<p>Hi {{ bill_to.first_name }},</p>
+						{% elseif ship_to.first_name %}
+						<p>Hi {{ ship_to.first_name }},</p>
 						{% endif %}
-						</td>
-						<td>{{ item.title }}</td>
-						<td align="center">{{ item.quantity }}</td>
-						<td align="center">{{ item.totals.value }}</td>
-				 	</tr>
-				{% endfor %}	
-				</tbody>
-			</table>
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2">
-			<br />
-			<br />
-			<br />
-			<strong>Total (including shipping):</strong>
-			<br />
-			{{ totals.formatted.total }}
-		</td>
-	</tr>
-	<tr>
-	   <td colspan="2">
-	   	<br />
-		<br />
-		<br />
-		{% if ordertype == 'CASH' %}
-			You are paying cash, so please have the above amounts ready for us when we deliver your order.
-			<br />
-			<br />
-		{% endif %}
-	   	Please note that this is just a confirmation of your order - we will be contacting you soon to arrange your delivery.
-	   	<br />
-	   	Once your items have been dispatched, we'll email you again with more information.
-	      	<br />
-	      	<br />	
-	      	Thanks for your custom, and we hope to see you back soon!
-	   </td>
-	</tr>
-	<tr>
-		<td align="center" colspan="2">
-			<br />
-			<br />
-			<br />
-			<img width=170 height=170 style="width:170px;height:170px;" src="https://freeman-industries.github.io/tippler-email-resources/qr.jpg" alt="Tippler"/>
-			<br />
-			<br />
-			Add us on WeChat! Search for <strong>Tippler</strong>.
-		</td>
-	</tr>
-</tbody>
-</table>
+
+						<p>Thank you for your recent order! Here's your receipt:</p>
+						<br />
+					</td>
+				</tr>
+				<tr>
+					{% if shipping %}
+					<td>
+						<p><strong>Shipping Information:</strong></p>
+						<p>
+							{% if ship_to.data.first_name %}{{ ship_to.data.first_name }}{% endif %}{% if ship_to.data.last_name %} {{ ship_to.data.last_name }}{% endif %}<br /> {% if ship_to.data.company %}{{ ship_to.data.company }}<br />{% endif %} {% if ship_to.data.address_1 %}{{ ship_to.data.address_1 }}<br />{% endif %} {% if ship_to.data.address_2 %}{{ ship_to.data.address_2 }}<br />{% endif %} {% if ship_to.data.city %}{{ ship_to.data.city }}<br />{% endif %}
+						</p>
+						<p>
+							<strong>Your phone number:</strong>
+							<br /> {{ ship_to.data.phone }}
+						</p>
+						{% if ship_to.data.instructions %}
+						<p>
+							<strong>Special instructions:</strong>
+							<br /> {{ ship_to.data.instructions }}
+						</p>
+						{% endif %}
+						<p>
+							<strong>Shipping Price:</strong>
+							<br /> {{ shipping.data.price.value }} ({{ shipping.value }})
+						</p>
+						<p>
+							<strong>Estimated delivery time:</strong>
+							<br /> {{ shipping.data.eta }}
+						</p>
+					</td>
+					{% endif %}
+				</tr>
+				<tr>
+					<td colspan="2">
+						<br />
+						<br />
+						<br />
+						<table border="0" cellpadding="2" cellspacing="0" style="width: 100%">
+							<thead>
+								<tr style="border-top: 1px solid #ccc">
+									<th style="font-weight:bold;text-align:left">Product</th>
+									<th></th>
+									<th style="font-weight:bold;text-align:left">Quantity</th>
+									<th style="font-weight:bold;text-align:left">Total</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								{% for item in items %}
+								<tr style="border-top: 1px solid #ccc">
+									<td>
+										{% if item.product.data.images is empty %} {% else %}
+										<img src="http://{{ item.product.data.images.0.segments.domain }}w60/h228/fit/{{ item.product.data.images.0.segments.suffix }}" alt="{{ item.title }}" /> {% endif %}
+									</td>
+									<td>{{ item.title }}</td>
+									<td align="center">{{ item.quantity }}</td>
+									<td align="center">{{ item.totals.value }}</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<br />
+						<br />
+						<br />
+						<strong>Total (including shipping):</strong>
+						<br /> {{ totals.formatted.total }}
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<br />
+						<br />
+						<br /> {% if ordertype == 'CASH' %} You are paying cash, so please have the above amounts ready for us when we deliver your order.
+						<br />
+						<br /> {% endif %} Please note that this is just a confirmation of your order - we will be contacting you soon to arrange your delivery.
+						<br /> Once your items have been dispatched, we'll email you again with more information.
+						<br />
+						<br /> Thanks for your custom, and we hope to see you back soon!
+					</td>
+				</tr>
+				<tr>
+					<td align="center" colspan="2">
+						<br />
+						<br />
+						<br />
+						<img width=170 height=170 style="width:170px;height:170px;" src="https://freeman-industries.github.io/tippler-email-resources/qr.jpg" alt="Tippler" />
+						<br />
+						<br /> Add us on WeChat! Search for <strong>Tippler</strong>.
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<!-- In Chinese -->
+		<hr />
+		<h2 id="chinese">In Chinese:<small> <a href="#english"> Back to english</a></small></h2>
+		<!-- Order Paid -->
+		<table border="0" cellpadding="2" cellspacing="0" style="width: 100%;font-family:'Avenir Next','Avenir','Proxima Nova','Helvetica Neue','Helvetica',sans-serif">
+			<tbody>
+				<tr>
+					<td>
+						<p><img width=90 height=90 style="width:90px;height:90px;" src="https://freeman-industries.github.io/tippler-email-resources/man.jpg" alt="Tippler" /></p>
+					</td>
+					<td style="text-align: right;">
+						<p><strong>订单编号: #{{ id }}</strong></p>
+					</td>
+				</tr>
+
+				<tr>
+					<td colspan="2">
+						<br /> {% if customer.data.first_name %}
+						<p>Hi {{ customer.data.first_name }},</p>
+						{% elseif bill_to.first_name %}
+						<p>Hi {{ bill_to.first_name }},</p>
+						{% elseif ship_to.first_name %}
+						<p>Hi {{ ship_to.first_name }},</p>
+						{% endif %}
+
+						<p>非常感谢您的订单！以下是您的订货信息：</p>
+						<br />
+					</td>
+				</tr>
+				<tr>
+					{% if shipping %}
+					<td>
+						<p><strong>收货信息:</strong></p>
+						<p>
+							{% if ship_to.data.first_name %}{{ ship_to.data.first_name }}{% endif %}{% if ship_to.data.last_name %} {{ ship_to.data.last_name }}{% endif %}<br /> {% if ship_to.data.company %}{{ ship_to.data.company }}<br />{% endif %} {% if ship_to.data.address_1 %}{{ ship_to.data.address_1 }}<br />{% endif %} {% if ship_to.data.address_2 %}{{ ship_to.data.address_2 }}<br />{% endif %} {% if ship_to.data.city %}{{ ship_to.data.city }}<br />{% endif %}
+						</p>
+						<p>
+							<strong>电话号码:</strong>
+							<br /> {{ ship_to.data.phone }}
+						</p>
+						{% if ship_to.data.instructions %}
+						<p>
+							<strong>特别说明:</strong>
+							<br /> {{ ship_to.data.instructions }}
+						</p>
+						{% endif %}
+						<p>
+							<strong>快递费用:</strong>
+							<br /> {{ shipping.data.price.value }} ({{ shipping.value }})
+						</p>
+						<p>
+							<strong>预估收货时间:</strong>
+							<br /> {{ shipping.data.eta }}
+						</p>
+					</td>
+					{% endif %}
+				</tr>
+				<tr>
+					<td colspan="2">
+						<br />
+						<br />
+						<br />
+						<table border="0" cellpadding="2" cellspacing="0" style="width: 100%">
+							<thead>
+								<tr style="border-top: 1px solid #ccc">
+									<th style="font-weight:bold;text-align:left">产品</th>
+									<th></th>
+									<th style="font-weight:bold;text-align:left">数量</th>
+									<th style="font-weight:bold;text-align:left">总价</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								{% for item in items %}
+								<tr style="border-top: 1px solid #ccc">
+									<td>
+										{% if item.product.data.images is empty %} {% else %}
+										<img src="http://{{ item.product.data.images.0.segments.domain }}w60/h228/fit/{{ item.product.data.images.0.segments.suffix }}" alt="{{ item.title }}" /> {% endif %}
+									</td>
+									<td>{{ item.title }}</td>
+									<td align="center">{{ item.quantity }}</td>
+									<td align="center">{{ item.totals.value }}</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<br />
+						<br />
+						<br />
+						<strong>总价 (包括快递费用):</strong>
+						<br /> {{ totals.formatted.total }}
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<br />
+						<br />
+						<br /> {% if ordertype == 'CASH' %} 由于您选择的是货到付款，因此请确保通信畅通，我们会尽快为您做发货安排。
+						<br />
+						<br /> {% endif %} 请查看您的订单，我们会尽快地和您联系再确认安排。
+						<br /> 发货后， 我们会通过邮件的方式让您得到更多信息。
+						<br />
+						<br /> 谢谢配合， 希望下次在为您服务！
+					</td>
+				</tr>
+				<tr>
+					<td align="center" colspan="2">
+						<br />
+						<br />
+						<br />
+						<img width=170 height=170 style="width:170px;height:170px;" src="https://freeman-industries.github.io/tippler-email-resources/qr.jpg" alt="Tippler" />
+						<br />
+						<br /> 加我们的微信! 请搜索 <strong>Tippler</strong>.
+					</td>
+				</tr>
+			</tbody>
+		</table>
